@@ -1,0 +1,28 @@
+:root {
+  --black: rgb(10, 10, 10);
+  --white: rgb(245, 245, 245);
+  --gray-500: rgb(98, 108, 127);
+  --gray-50: rgb(244, 246, 250);
+  --blue-950: rgb(45, 57, 73);
+  --blue-900: rgb(49, 62, 81);
+  --blue-850: rgb(59, 77, 102);
+  --blue-500: rgb(48, 106, 255);
+  --blue-300: rgb(171, 193, 225);
+  --blue-100: rgb(237, 241, 249);
+  --blue-50: rgb(235, 240, 255);
+  --green-500: rgb(47, 216, 135);
+  --green-100: rgb(224, 253, 239);
+  --purple-600: rgb(167, 41, 245);
+  --purple-100: rgb(246, 231, 255);
+  --orange-400: rgb(255, 126, 53);
+  --orange-50: rgb(255, 245, 237);
+  --red-500: rgb(238, 84, 84);
+}
+
+html {
+  font-size: 16px;
+  font-family: "Rubik", sans-serif;
+}
+
+body {
+}
