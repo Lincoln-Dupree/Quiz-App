@@ -51,7 +51,7 @@ window.addEventListener("DOMContentLoaded", function () {
         const quizData = JSON.parse(localStorage.getItem("quizData"));
 
         const selectData = quizData[0];
-        console.log(selectData.questions[0].options);
+        console.log(selectData.questions[0]);
 
         quizTitleIcon.src = selectData.icon;
         quizTitleText.innerText = selectData.title;
