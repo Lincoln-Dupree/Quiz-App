@@ -40,7 +40,6 @@ for (const btn of quizSelectBtn) {
 
 const quizData = JSON.parse(localStorage.getItem("quizData"));
 const selectData = quizData[0];
-
 const quizTitleIcon = document.querySelector(".quiz-title-icon");
 const quizTitleText = document.querySelector(".quiz-title-text");
 const questionText = document.querySelector(".question-text");
@@ -50,6 +49,7 @@ const choiceCText = document.querySelector(".choice-c-text");
 const choiceDText = document.querySelector(".choice-d-text");
 const submitAnswer = document.querySelector(".submit-btn");
 const questionNum = document.querySelector(".question-number");
+let score = 0;
 
 window.addEventListener("DOMContentLoaded", function () {
     if (document.body.classList.contains("page-game")) {
@@ -60,24 +60,25 @@ window.addEventListener("DOMContentLoaded", function () {
         choiceBText.innerText = selectData.questions[0].options[1];
         choiceCText.innerText = selectData.questions[0].options[2];
         choiceDText.innerText = selectData.questions[0].options[3];
-
-        submitAnswer.addEventListener("click", function () {
-            let questionNumInt = Number(questionNum.innerText);
-
-            questionText.innerText = selectData.questions[`${questionNumInt}`].question;
-            choiceAText.innerText = selectData.questions[`${questionNumInt}`].options[0];
-            choiceBText.innerText = selectData.questions[`${questionNumInt}`].options[1];
-            choiceCText.innerText = selectData.questions[`${questionNumInt}`].options[2];
-            choiceDText.innerText = selectData.questions[`${questionNumInt}`].options[3];
-
-            if (questionNumInt < selectData.questions.length) {
-                questionNumInt += 1;
-                questionNum.innerText = questionNumInt.toString();
-            }
-
-        })
     }
 });
+
+submitAnswer.addEventListener("click", function () {
+    if (document.body.classList.contains("page-game")) {
+        let questionNumInt = Number(questionNum.innerText);
+        questionText.innerText = selectData.questions[`${questionNumInt}`].question;
+        choiceAText.innerText = selectData.questions[`${questionNumInt}`].options[0];
+        choiceBText.innerText = selectData.questions[`${questionNumInt}`].options[1];
+        choiceCText.innerText = selectData.questions[`${questionNumInt}`].options[2];
+        choiceDText.innerText = selectData.questions[`${questionNumInt}`].options[3];
+
+        if (questionNumInt < selectData.questions.length) {
+            questionNumInt += 1;
+            questionNum.innerText = questionNumInt.toString();
+        }
+    }
+})
+
 
 console.log(selectData.questions.length);
 console.log(selectData);
