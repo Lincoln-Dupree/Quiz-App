@@ -39,7 +39,7 @@ for (const btn of quizSelectBtn) {
 }
 
 const quizData = JSON.parse(localStorage.getItem("quizData"));
-const selectData = quizData[0];
+const selectData = quizData?.[0];
 const quizTitleIcon = document.querySelector(".quiz-title-icon");
 const quizTitleText = document.querySelector(".quiz-title-text");
 const questionText = document.querySelector(".question-text");
@@ -89,6 +89,7 @@ window.addEventListener("DOMContentLoaded", function () {
         }
 
         submitAnswer.addEventListener("click", function () {
+            questionNumInt = Number(questionNum.innerText);
             // updates the score, and then clears the format
             for (const each of allChoices) {
                 if (each.classList.contains("correct-choice")) {
@@ -98,7 +99,11 @@ window.addEventListener("DOMContentLoaded", function () {
                 each.classList.remove("wrong-choice");
             }
 
-            console.log(score);
+            if (questionNumInt >= selectData.questions.length) {
+                localStorage.setItem("scoreData", JSON.stringify(score));
+                window.location.href = "results.html";
+                return;
+            }
 
             questionText.innerText = selectData.questions[`${questionNumInt}`].question;
             choiceAText.innerText = selectData.questions[`${questionNumInt}`].options[0];
@@ -111,9 +116,6 @@ window.addEventListener("DOMContentLoaded", function () {
                 questionNum.innerText = questionNumInt.toString();
             }
 
-            if (questionNumInt >= selectData.questions.length) {
-                window.location.href = "results.html";
-            }
 
         })
     }
@@ -121,14 +123,26 @@ window.addEventListener("DOMContentLoaded", function () {
 
 const resultsTitleIcon = document.querySelector(".results-title-icon");
 const resultsTitleText = document.querySelector(".results-title-text");
+const endScore = document.querySelector(".results-score-num");
+const resetBtn = document.querySelector(".reset-btn");
 
 //functionality for the results page
 window.addEventListener("DOMContentLoaded", function () {
     if (document.body.classList.contains("page-results")) {
+        const scoreData = JSON.parse(localStorage.getItem("scoreData"));
+
         quizTitleIcon.src = selectData.icon;
         quizTitleText.innerText = selectData.title;
         resultsTitleIcon.src = selectData.icon;
         resultsTitleText.innerText = selectData.title;
+        endScore.innerText = scoreData;
+
+        resetBtn.addEventListener("click", function () {
+            localStorage.clear();
+            score = 0;
+            window.location.href = "index.html";
+        })
+
     }
 });
 
