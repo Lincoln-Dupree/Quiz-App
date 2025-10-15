@@ -74,10 +74,19 @@ window.addEventListener("DOMContentLoaded", function () {
                 questionNum.innerText = questionNumInt.toString();
             }
 
+            if (questionNumInt >= selectData.questions.length) {
+                window.location.href = "results.html";
+            }
+
         })
     }
 });
 
-
+window.addEventListener("DOMContentLoaded", function () {
+    if (document.body.classList.contains("page-results")) {
+        quizTitleIcon.src = selectData.icon;
+        quizTitleText.innerText = selectData.title;
+    }
+});
 
 

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="results-style.css" />
+    <script defer src="script.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
+      rel="stylesheet"
+    />
+    <title>Quiz App</title>
+  </head>
+  <body class="page-results">
+    <main class="main-container">
+      <section class="header-section">
+        <div class="quiz-title">
+          <img src="images/icon-html.svg" class="quiz-title-icon" />
+          <span class="quiz-title-text">HTML</span>
+        </div>
+        <div class="light-dark-toggle-section">
+          <img src="images/icon-sun-light.svg" alt="sun-icon" />
+          <label class="toggle-switch">
+            <input type="checkbox" checked />
+            <span class="toggle-slider"></span>
+          </label>
+          <img src="images/icon-moon-light.svg" alt="moon-icon" />
+        </div>
+      </section>
+      <section class="main-section">
+        <div class="results-text-section">
+          <div class="results-header">
+            <p>Quiz completed</p>
+            <p class="bold-header">You scored...</p>
+          </div>
+        </div>
+        <section class="results-score-section">
+          <div class="results-score-box">
+            <div class="results-score-title">
+              <img src="images/icon-html.svg" class="results-title-icon" />
+              <span class="results-title-text">HTML</span>
+            </div>
+            <div class="results-score-num">8</div>
+            <div class="results-score-sub-text">out of 10</div>
+          </div>
+          <button class="choice reset-btn">Play Again</button>
+        </section>
+      </section>
+    </main>
+  </body>
+</html>
