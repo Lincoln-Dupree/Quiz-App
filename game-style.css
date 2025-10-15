@@ -178,8 +178,16 @@ body {
   text-decoration: none;
   background-color: var(--blue-850);
   border-radius: 1rem;
-  border: none;
+  border: 0.125rem solid transparent;
   padding: 1.5rem;
+}
+
+.correct-choice {
+  border: 0.125rem solid var(--green-500);
+}
+
+.wrong-choice {
+  border: 0.125rem solid var(--red-500);
 }
 
 .choice-letter {

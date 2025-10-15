@@ -18,8 +18,8 @@ async function getData() {
 
 const quizSelectBtn = document.querySelectorAll(".topic-btn");
 
+// this is a click event to fetch the JSON data, and then store it locally for later use in updating HTML
 for (const btn of quizSelectBtn) {
-
     btn.addEventListener("click", async function () {
 
         const topicText = btn.querySelector(".topic-text").innerText;
@@ -49,10 +49,13 @@ const choiceCText = document.querySelector(".choice-c-text");
 const choiceDText = document.querySelector(".choice-d-text");
 const submitAnswer = document.querySelector(".submit-btn");
 const questionNum = document.querySelector(".question-number");
+const allChoices = document.querySelectorAll(".choice-option");
 let score = 0;
 
+//functionality for the actual quiz section
 window.addEventListener("DOMContentLoaded", function () {
     if (document.body.classList.contains("page-game")) {
+        let questionNumInt = Number(questionNum.innerText);
         quizTitleIcon.src = selectData.icon;
         quizTitleText.innerText = selectData.title;
         questionText.innerText = selectData.questions[0].question;
@@ -61,8 +64,42 @@ window.addEventListener("DOMContentLoaded", function () {
         choiceCText.innerText = selectData.questions[0].options[2];
         choiceDText.innerText = selectData.questions[0].options[3];
 
+        for (const choice of allChoices) {
+            choice.addEventListener("click", function () {
+                // clear format on each click
+                for (const each of allChoices) {
+                    each.classList.remove("correct-choice");
+                    each.classList.remove("wrong-choice");
+                }
+
+                const selectedText = this.querySelector(".choice-text").innerText;
+                // base zero issue fix
+                let numIntMath = Number(questionNumInt) - 1;
+                const correctAnswer = selectData.questions[`${numIntMath}`].answer;
+
+                console.log(selectedText);
+                console.log(correctAnswer);
+
+                if (selectedText == correctAnswer) {
+                    choice.classList.add("correct-choice");
+                } else {
+                    choice.classList.add("wrong-choice");
+                }
+            })
+        }
+
         submitAnswer.addEventListener("click", function () {
-            let questionNumInt = Number(questionNum.innerText);
+            // updates the score, and then clears the format
+            for (const each of allChoices) {
+                if (each.classList.contains("correct-choice")) {
+                    score += 1;
+                }
+                each.classList.remove("correct-choice");
+                each.classList.remove("wrong-choice");
+            }
+
+            console.log(score);
+
             questionText.innerText = selectData.questions[`${questionNumInt}`].question;
             choiceAText.innerText = selectData.questions[`${questionNumInt}`].options[0];
             choiceBText.innerText = selectData.questions[`${questionNumInt}`].options[1];
@@ -82,10 +119,16 @@ window.addEventListener("DOMContentLoaded", function () {
     }
 });
 
+const resultsTitleIcon = document.querySelector(".results-title-icon");
+const resultsTitleText = document.querySelector(".results-title-text");
+
+//functionality for the results page
 window.addEventListener("DOMContentLoaded", function () {
     if (document.body.classList.contains("page-results")) {
         quizTitleIcon.src = selectData.icon;
         quizTitleText.innerText = selectData.title;
+        resultsTitleIcon.src = selectData.icon;
+        resultsTitleText.innerText = selectData.title;
     }
 });
 
